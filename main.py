@@ -23,7 +23,7 @@ from concurrent.futures import ThreadPoolExecutor
 # EXIFTOOL_PATH: 请在此填写本地 exiftool.exe 的绝对路径。
 # 建议使用 r"..." 格式以避免反斜杠转义问题。
 # 若留空 ("")，程序将尝试从系统环境变量(PATH)中调用。
-EXIFTOOL_PATH = r"E:\tools\MetaSword\Tools\Forensics\exiftool\exiftool.exe"
+EXIFTOOL_PATH = r"path_to_exiftool"
 # ==========================================
 
 # 引入两个独立的底层引擎及其对应的数据结构
@@ -324,4 +324,5 @@ def main():
             log_error(f"指定的目录无效: {args.dir}")
 
 if __name__ == "__main__":
+
     main()
