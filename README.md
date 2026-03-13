@@ -43,7 +43,7 @@ optional arguments:
 1. 安装依赖
 
 ```
-pip3 install pyyaml watchdog urllib pyexiftool
+pip3 install pyyaml watchdog pyexiftool
 ```
 
 3. 填写exiftool路径
