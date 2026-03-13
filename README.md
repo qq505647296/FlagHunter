@@ -41,14 +41,18 @@ optional arguments:
 
 🖥️ 使用方法
 1. 安装依赖
-pip3 install pyyaml watchdog urllib pyexiftool
 
-2. 填写exiftool路径
+```
+pip3 install pyyaml watchdog urllib pyexiftool
+```
+
+3. 填写exiftool路径
 在 `main.py` 里面
 
-3. 使用
+4. 使用
+```
 python3 FlagHunter -h
-
+```
 
 
 
