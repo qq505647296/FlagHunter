@@ -1,0 +1,64 @@
+# ==================================================
+# 🏴‍☠️ Flag Hunter 配置文件
+# 开发团队：Hx0 战队, chen7chen 魔改
+# 说明：本文件用于自定义 Flag 搜索规则与扫描行为
+# 架构：双管线引擎 (Stage 1: 静态极速匹配 -> Stage 2: 动态正则深度提取)
+# ==================================================
+
+# --- 1. 第一阶段：极速静态匹配规则 (flag_simple_rules) ---
+# [性能最高] 引擎会优先运行此部分规则。直接在底层编译死特征码进行光速检索。
+# 仅支持纯文本前缀（如 "flag"、"wdctf"），绝对不可包含正则符号（如 .*^$）。
+flag_simple_rules:
+  # 示例 1：搜索 "flag"，启用所有编码模式（默认推荐）
+  - prefix: "flag"
+    variants:
+      plaintext: true
+      base64: true
+      hex_curly: true
+      hex_plain: true
+
+  # 示例 2：搜索 "wdctf"，启用所有编码模式
+  - prefix: "wdctf"
+    variants:
+      plaintext: true
+      base64: true
+      hex_curly: true
+      hex_plain: true
+
+  # 示例 3：搜索 "nssctf"，启用所有编码模式
+  - prefix: "nssctf"
+    variants:
+      plaintext: true
+      base64: true
+      hex_curly: true
+      hex_plain: true
+
+
+# --- 2. 第二阶段：深度正则匹配规则 (flag_regular_rules) ---
+# [性能消耗较大] 当且仅当第一阶段未命中时作为兜底扫描触发。
+# 引擎将在内存中大范围提取可疑的 Base64/Hex 并实时解码，随后运用此处定义的正则表达式进行校验。
+# 支持复杂的正则表达式（如 "^.*ctf.*$"）。
+flag_regular_rules:
+  # 示例：匹配任意以 ctf 结尾或包含 ctf 的格式，如 ANYctf{...}
+  - regex: "^.*ctf.*$"
+    variants:
+      plaintext: true  # 扫描明文流中的正则命中
+      base64: true     # 扫描被混淆为 Base64 的正则命中
+      hex_curly: true  # 扫描形如 616e796374667b... 的 Hex
+      hex_plain: true  # 扫描无括号的纯 Hex 命中
+
+
+  - regex: "(?i)[f][lL1!I][aA4@^][gG96q]"
+    variants:
+      plaintext: true  # 扫描明文流中的正则命中
+      base64: true     # 扫描被混淆为 Base64 的正则命中
+      hex_curly: true  # 扫描形如 616e796374667b... 的 Hex
+      hex_plain: true  # 扫描无括号的纯 Hex 命中
+
+
+# --- 3. 扫描器全局设置 (Scanner Settings) ---
+# 你可以通过以下参数调整扫描速度与显示效果。
+scan_cooldown: 1          # 同一文件的最小重复扫描间隔 (秒)
+max_file_size_mb: 10000   # 最大扫描文件大小 (单位: MB)
+context_bytes: 40         # Flag 命中结果上下文展示字节数
+max_threads: 4            # 最大并发扫描线程数 (推荐设置为 CPU 核心数)
