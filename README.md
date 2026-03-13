@@ -23,6 +23,8 @@ flag_regular_rules:
       hex_plain: true  # 扫描无括号的纯 Hex 命中
 
 参数：
+
+```
 usage: main.py [-h] [-d DIR] [-f FILE] [-u URL] [-e] [-r]
 
 Advanced CTF Flag Hunter Engine (Dual-Pipeline)
@@ -34,6 +36,7 @@ optional arguments:
   -u URL, --url URL     扫描目标 URL (例如提取 HTML 注释/前端源码中的 Flag)
   -e, --exif            尝试提取目标文件的 EXIF/元数据
   -r, --regex           启用 Stage 2 深度正则匹配引擎 (用于提取高混淆 Flag，性能损耗较大)
+```
 
 🖥️ 使用方法
 1. 安装依赖
