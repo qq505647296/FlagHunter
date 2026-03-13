@@ -4,6 +4,7 @@
 添加了几个参数，使搜索flag的范围更广
 
 🧩 配置文件说明 (config.yml)
+```
 flag_simple_rules:
   # 示例 1：搜索 "flag"，启用所有编码模式（默认推荐）
   - prefix: "flag"
@@ -21,7 +22,7 @@ flag_regular_rules:
       base64: true     # 扫描被混淆为 Base64 的正则命中
       hex_curly: true  # 扫描形如 616e796374667b... 的 Hex
       hex_plain: true  # 扫描无括号的纯 Hex 命中
-
+```
 参数：
 
 ```
